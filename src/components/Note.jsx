@@ -1,27 +1,12 @@
-import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
-import { TiTick } from "react-icons/ti";
 
-function Note({ id, title, message }) {
-    const [edit, setEdit] = useState(false);
-
-    function isEdit(flag) {
-        if (flag) {
-            return <TiTick />;
-        } else {
-            return <FaEdit />;
-        }
-    }
-
+function Note({ id, title, message, flag }) {
     return (
         <article className="note">
-            <input type="text" className="title" />
-            <textarea
-                rowspan="auto"
-                className="message"
-            ></textarea>
-            <button className="save__edit" onClick={() => setEdit(!edit)}>
-                {isEdit(edit)}
+            <h3 className="title">{title}</h3>
+            <p className="message">{message}</p>
+            <button className="save__edit">
+                <FaEdit />
             </button>
         </article>
     );

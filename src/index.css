@@ -13,6 +13,11 @@
 
 :root {
     --clr-blue-tr: hsl(207.95, 100%, 65.49%, 0.25);
+    --clr-white-tr: hsl(0, 0%, 100%, 0.25);
+    --clr-lite-pink: hsl(337.6, 74.26%, 80.2%, 0.5);
+    --clr-accept: hsl(127.87, 48.8%, 50.98%, 0.8);
+    --clr-cancel: hsl(0, 100%, 60.98%, 0.8);
+    --trans: all 0.2s linear;
 }
 
 /* ======== BASE ============ */
@@ -21,7 +26,7 @@ body {
     background: hsl(208, 82.19%, 71.37%);
     background: linear-gradient(
         45deg,
-        hsl(207.93, 100%, 65%) 0%,
+        hsl(351.79, 100%, 81.37%) 0%,
         hsl(208, 82.19%, 90%) 100%
     );
     min-height: 100vh;
@@ -44,14 +49,15 @@ code {
 .App {
     padding: 2rem;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     gap: 1rem;
 }
 
 .note {
-    background-color: var(--clr-blue-tr);
+    background-color: var(--clr-white-tr);
     width: 100%;
+    height: fit-content;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -91,4 +97,93 @@ code {
     right: 0.5rem;
     display: flex;
     align-items: center;
+}
+
+/* =========== ADD BUTTON =========== */
+
+.add {
+    background-color: transparent;
+    border: 0;
+    font-size: 3.5rem;
+    position: fixed;
+    bottom: 0.5rem;
+    right: 1.2rem;
+}
+
+/* ======= EDITOR ======= */
+
+.editor {
+    background-color: var(--clr-lite-pink);
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.editor.show {
+    display: flex;
+    transform: translateX(0%);
+    transition: var(--trans);
+}
+
+.editor.hide {
+    transform: translateX(100%);
+    transition: var(--trans);
+}
+
+.input-title, .input-message {
+    background-color: hsl(0, 0%, 100%, 0.8);
+    font-family: inherit;
+    width: 95%;
+    padding: 0.8rem 1rem;
+    border: 0;
+    border-radius: 8px;
+}
+
+.input-title {
+    font-size: 1.5rem;
+}
+
+.input-message {
+    font-size: 1rem;
+    resize: none;
+}
+
+.button-container {
+    display: flex;
+    width: 80%;
+    /* gap: 2rem; */
+    margin: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn {
+    background-color: transparent;
+    height: 4rem;
+    width: 4rem;
+    border: 7px solid;
+    border-radius: 50%;
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.accept {
+    color: var(--clr-accept);
+}
+
+.btn.cancel {
+    height: 4.2rem;
+    width: 4.2rem;
+    color: var(--clr-cancel);
+    font-size: 4.5rem;
+    border: 0;
 }
