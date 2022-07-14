@@ -22,6 +22,20 @@ function App() {
         setDb(Notes);
     }, []);
 
+    function delItem(id) {
+        const items = dB.filter((item, i) => {
+            if(i !== id) {
+                return item;
+            }
+        });
+        setDb(items);
+        if(dB.length > 0) {
+            localStorage.setItem("dB", JSON.stringify(dB));
+        } else {
+            localStorage.setItem("dB", JSON.stringify([]));
+        }
+    }
+
     function enableEdit(id) {
         setItem(id);
         setEditor(true);
@@ -50,15 +64,19 @@ function App() {
                         title={item.title}
                         message={item.message}
                         enableEdit={enableEdit}
+                        delItem={delItem}
                         key={i}
                         item={i}
                     ></Note>
                 ))}
             </div>
-            <button className="add" onClick={() => {
-                setItem(null);
-                setEditor(!editor);
-            }}>
+            <button
+                className="add"
+                onClick={() => {
+                    setItem(null);
+                    setEditor(!editor);
+                }}
+            >
                 <IoMdAddCircle></IoMdAddCircle>
             </button>
             <div className={editor ? "editor show" : "editor hide"}>
