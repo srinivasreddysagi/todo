@@ -23,16 +23,12 @@ function App() {
     }, []);
 
     function delItem(id) {
-        const items = dB.filter((item, i) => {
-            if(i !== id) {
-                return item;
-            }
-        });
+        const items = dB.filter((item, i) => i !== id);
         setDb(items);
-        if(dB.length > 0) {
-            localStorage.setItem("dB", JSON.stringify(dB));
-        } else {
+        if (items.length === 0) {
             localStorage.setItem("dB", JSON.stringify([]));
+        } else {
+            localStorage.setItem("dB", JSON.stringify(dB));
         }
     }
 
@@ -54,6 +50,18 @@ function App() {
         setMessage("");
         setEditor(false);
         localStorage.setItem("dB", JSON.stringify(dB));
+    }
+
+    if (dB.length === 0) {
+        return (
+            <div className="empty">
+                <h3 className="empty-note">
+                    {dB.length === 0
+                        ? "Tap on the add button to create a new Todo item"
+                        : null}
+                </h3>
+            </div>
+        );
     }
 
     return (
