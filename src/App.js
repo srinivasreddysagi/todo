@@ -10,11 +10,26 @@ function App() {
     const [message, setMessage] = useState("");
     const [editor, setEditor] = useState(false);
 
+    function enableEdit(id) {
+        setEditor(true);
+    }
+
+    function pushToStack(item) {
+        Notes.push({ title: title, message: message });
+        setTitle("");
+        setMessage("");
+        setEditor(false);
+    }
+
     return (
         <>
             <div className="App">
                 {Notes.map((item) => (
-                    <Note title={item.title} message={item.message}></Note>
+                    <Note
+                        title={item.title}
+                        message={item.message}
+                        onClick={enableEdit}
+                    ></Note>
                 ))}
             </div>
             <button className="add" onClick={() => setEditor(!editor)}>
@@ -37,7 +52,10 @@ function App() {
                     onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
                 <div className="button-container">
-                    <button className="btn accept">
+                    <button
+                        className="btn accept"
+                        onClick={() => pushToStack()}
+                    >
                         <TiTick />
                     </button>
                     <button
