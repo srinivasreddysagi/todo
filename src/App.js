@@ -2,25 +2,25 @@ import Note from "./components/Note";
 import { IoMdAddCircle } from "react-icons/io";
 import { TiTick } from "react-icons/ti";
 import { GiCancel } from "react-icons/gi";
-import Notes from "./Data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
     const [editor, setEditor] = useState(false);
-    const [dB] = useState(Notes);
+    const [dB, setDb] = useState([]);
     const [item, setItem] = useState(null);
 
-    // useEffect(() => {
-    //     if (localStorage.getItem("dB") !== null) {
-    //         setDb(JSON.parse(localStorage.getItem("dB")));
-    //     }
-    // }, []);
-    // useEffect(() => {
-    //     localStorage.setItem("dB", JSON.stringify(dB));
-    //     console.log("updated");
-    // }, [dB]);
+    useEffect(() => {
+        const Notes = () => {
+            try {
+                return JSON.parse(localStorage.getItem("dB")) || [];
+            } catch (error) {
+                return [];
+            }
+        };
+        setDb(Notes);
+    }, []);
 
     function enableEdit(id) {
         setItem(id);
@@ -39,6 +39,7 @@ function App() {
         setTitle("");
         setMessage("");
         setEditor(false);
+        localStorage.setItem("dB", JSON.stringify(dB));
     }
 
     return (
@@ -54,7 +55,10 @@ function App() {
                     ></Note>
                 ))}
             </div>
-            <button className="add" onClick={() => setEditor(!editor)}>
+            <button className="add" onClick={() => {
+                setItem(null);
+                setEditor(!editor);
+            }}>
                 <IoMdAddCircle></IoMdAddCircle>
             </button>
             <div className={editor ? "editor show" : "editor hide"}>

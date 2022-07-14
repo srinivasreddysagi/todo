@@ -17,7 +17,7 @@
     --clr-lite-pink: hsl(337.6, 74.26%, 80.2%, 0.5);
     --clr-accept: hsl(127.87, 48.8%, 50.98%, 0.8);
     --clr-cancel: hsl(0, 100%, 60.98%, 0.8);
-    --trans: all 0.2s linear;
+    --trans: all 0.2s ease;
 }
 
 /* ======== BASE ============ */
@@ -57,6 +57,7 @@ code {
 .note {
     background-color: var(--clr-white-tr);
     width: 100%;
+    max-width: 28rem;
     height: fit-content;
     padding: 0.5rem;
     display: flex;
@@ -97,6 +98,20 @@ code {
     right: 0.5rem;
     display: flex;
     align-items: center;
+}
+
+.del {
+    background-color: transparent;
+    color: var(--clr-cancel);
+    font-size: 1.2rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    border: 0;
 }
 
 /* =========== ADD BUTTON =========== */

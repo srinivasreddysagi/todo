@@ -1,4 +1,6 @@
 import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 function Note({ id, title, message, flag, enableEdit, item }) {
     return (
@@ -7,6 +9,9 @@ function Note({ id, title, message, flag, enableEdit, item }) {
             <p className="message">{message}</p>
             <button className="save__edit" onClick={() => enableEdit(item)}>
                 <FaEdit />
+            </button>
+            <button className="del">
+                <RiDeleteBin6Line />
             </button>
         </article>
     );
