@@ -54,13 +54,56 @@ function App() {
 
     if (dB.length === 0) {
         return (
-            <div className="empty">
-                <h3 className="empty-note">
-                    {dB.length === 0
-                        ? "Tap on the add button to create a new Todo item"
-                        : null}
-                </h3>
-            </div>
+            <>
+                <div className="empty">
+                    <h3 className="empty-note">
+                        Tap on the add button to create a new Todo item
+                    </h3>
+                </div>
+                <button
+                    className="add"
+                    onClick={() => {
+                        setItem(null);
+                        setEditor(true);
+                    }}
+                >
+                    <IoMdAddCircle></IoMdAddCircle>
+                </button>
+                <div className={editor ? "editor show" : "editor hide"}>
+                    <input
+                        type="text"
+                        placeholder="Title"
+                        className="input-title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <textarea
+                        rows="10"
+                        placeholder="Write here..."
+                        className="input-message"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                    <div className="button-container">
+                        <button
+                            className="btn accept"
+                            onClick={() => pushToStack(item)}
+                        >
+                            <TiTick />
+                        </button>
+                        <button
+                            className="btn cancel"
+                            onClick={() => {
+                                setEditor(!editor);
+                                setTitle("");
+                                setMessage("");
+                            }}
+                        >
+                            <GiCancel />
+                        </button>
+                    </div>
+                </div>
+            </>
         );
     }
 
