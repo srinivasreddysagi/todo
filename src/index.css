@@ -68,6 +68,8 @@ code {
     text-align: center;
 }
 
+/* ========== NOTE ================ */
+
 .note {
     background-color: var(--clr-white-tr);
     width: 100%;
@@ -112,6 +114,8 @@ code {
     right: 0.5rem;
     display: flex;
     align-items: center;
+    opacity: 0;
+    transition: var(--trans);
 }
 
 .del {
@@ -126,6 +130,12 @@ code {
     display: flex;
     align-items: center;
     border: 0;
+    opacity: 0;
+    transition: var(--trans);
+}
+
+.note:hover .save__edit, .note:hover .del {
+    opacity: 1;
 }
 
 /* =========== ADD BUTTON =========== */
